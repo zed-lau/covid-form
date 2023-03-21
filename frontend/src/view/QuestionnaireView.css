@@ -1,0 +1,55 @@
+.questionnaire-view__container {
+  background-color: white;
+  width: 50em;
+  border-radius: 1em;
+}
+
+.questionnaire-view__content {
+  padding: 0em 2em 2em 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.questionnaire-view__buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.questionnaire-view__button {
+  width: 15em;
+}
+
+.questionnaire-view__header {
+  display: flex;
+  padding-left: 2em;
+  padding-right: 2em;
+  justify-content: center;
+}
+
+.h2 {
+ float: left;
+ color: black
+}
+
+.questionnaire-view__questions {
+  margin-bottom: 1em
+}
+
+.questionnaire-text-field {
+  margin-top: 1em !important;
+  margin-bottom: 1em !important;
+  display:block;
+}
+
+.questionnaire-radio-group {
+  margin-top: 1em;
+}
+
+.questionnaire-radio-buttons-group {
+  color: rgba(0, 0, 0, 0.6)
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
+}

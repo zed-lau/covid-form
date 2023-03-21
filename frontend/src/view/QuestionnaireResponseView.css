@@ -1,0 +1,41 @@
+.questionnaire-response-view__container {
+  background-color: white;
+  width: 50em;
+  border-radius: 1em;
+}
+
+.questionnaire-response-view__header {
+  display: flex;
+  padding-left: 2em;
+  padding-right: 2em;
+  justify-content: center;
+}
+  
+.questionnaire-response-view__content {
+  padding: 0em 2em 2em 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.questionnaire-response-view__table-header-cell {
+  background-color: black !important;
+  color: white !important;
+}
+
+.questionnaire-response-view__no-record-table-cell {
+  color: gray !important;
+}
+
+h2 {
+  color: black
+}
+
+.questionnaire-response-view__buttons {
+  margin-top: 1em;
+  display: flex;
+  justify-content: center;
+}
+
+.questionnaire-response-view__button {
+  width: 15em;
+}
