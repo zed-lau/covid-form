@@ -28,5 +28,5 @@ export class Question {
 
   @JoinColumn({ name: 'questionnaire_id' })
   @ManyToOne(() => Questionnaire)
-  question: Questionnaire;
+  questionnaire: Questionnaire;
 }

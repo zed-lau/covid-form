@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { ResponsesValidator } from './common/decorator/IsValidResponses';
 import { dataSourceOptions } from './db/datasource';
 import { QuestionnaireModule } from './questionnaire/questionnaire.module';
 import { SubmissionModule } from './submission/submission.module';
@@ -13,6 +14,6 @@ import { SubmissionModule } from './submission/submission.module';
     SubmissionModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, ResponsesValidator],
 })
 export class AppModule {}

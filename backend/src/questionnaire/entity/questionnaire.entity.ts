@@ -6,6 +6,6 @@ export class Questionnaire {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToMany(() => Question, (questionnaire) => questionnaire.question)
+  @OneToMany(() => Question, (question) => question.questionnaire)
   questions: Question[];
 }

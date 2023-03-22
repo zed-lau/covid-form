@@ -1,4 +1,5 @@
-import { IsInt, IsNotEmptyObject } from 'class-validator';
+import { IsInt } from 'class-validator';
+import { IsValidResponses } from '../../common/decorator/IsValidResponses';
 import { ISubmissionDto } from '../../types';
 
 export class SubmissionDto implements ISubmissionDto {
@@ -10,6 +11,6 @@ export class SubmissionDto implements ISubmissionDto {
   @IsInt()
   readonly questionnaireId: number;
 
-  @IsNotEmptyObject()
+  @IsValidResponses('questionnaireId')
   readonly responses: Record<string, string>;
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Question, Questionnaire } from './entity';
+import { Question, Questionnaire, QuestionValidation } from './entity';
 
 @Injectable()
 export class QuestionnaireService {
@@ -10,6 +10,8 @@ export class QuestionnaireService {
     private questionnaireRepo: Repository<Questionnaire>,
     @InjectRepository(Question)
     private questionRepo: Repository<Question>,
+    @InjectRepository(QuestionValidation)
+    private questionValidationRepo: Repository<QuestionValidation>,
   ) {}
 
   async getQuestionnaire(id: number) {
@@ -25,6 +27,16 @@ export class QuestionnaireService {
     return await this.questionRepo
       .createQueryBuilder('question')
       .orderBy({ 'question.order': 'ASC' })
+      .getMany();
+  }
+
+  async getQuestionValidations(questionnaireId: number) {
+    return await this.questionValidationRepo
+      .createQueryBuilder('validation')
+      .leftJoin('validation.question', 'question')
+      .leftJoin('question.questionnaire', 'questionnaire')
+      .select(['validation.questionId', 'validation.type'])
+      .where('questionnaire.id=:id', { id: questionnaireId })
       .getMany();
   }
 }

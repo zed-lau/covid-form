@@ -1,6 +1,11 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Questionnaire, Question, QuestionOption } from './entity';
+import {
+  Questionnaire,
+  Question,
+  QuestionOption,
+  QuestionValidation,
+} from './entity';
 import { QuestionnaireController } from './questionnaire.controller';
 import { QuestionnaireService } from './questionnaire.service';
 
@@ -8,7 +13,12 @@ import { QuestionnaireService } from './questionnaire.service';
   controllers: [QuestionnaireController],
   providers: [QuestionnaireService],
   imports: [
-    TypeOrmModule.forFeature([Questionnaire, Question, QuestionOption]),
+    TypeOrmModule.forFeature([
+      Questionnaire,
+      Question,
+      QuestionOption,
+      QuestionValidation,
+    ]),
   ],
   exports: [QuestionnaireService],
 })

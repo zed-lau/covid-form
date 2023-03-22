@@ -3,8 +3,9 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import {
   questionnaireRepositoryMockFactory,
   questionRepositoryMockFactory,
+  questionValidationRepositoryMockFactory,
 } from '../../test/mocks/questionnaire.mock';
-import { Question, Questionnaire } from './entity';
+import { Question, Questionnaire, QuestionValidation } from './entity';
 import { QuestionnaireService } from './questionnaire.service';
 
 describe('QuestionnaireService', () => {
@@ -21,6 +22,10 @@ describe('QuestionnaireService', () => {
         {
           provide: getRepositoryToken(Question),
           useFactory: questionRepositoryMockFactory,
+        },
+        {
+          provide: getRepositoryToken(QuestionValidation),
+          useFactory: questionValidationRepositoryMockFactory,
         },
       ],
     }).compile();
