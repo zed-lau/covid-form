@@ -26,6 +26,9 @@ export class Question {
   @OneToMany(() => QuestionOption, (option) => option.question)
   options: QuestionOption[];
 
+  @Column({ name: 'questionnaire_id' })
+  questionnaireId: number;
+
   @JoinColumn({ name: 'questionnaire_id' })
   @ManyToOne(() => Questionnaire)
   questionnaire: Questionnaire;

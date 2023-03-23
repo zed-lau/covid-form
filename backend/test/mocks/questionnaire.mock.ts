@@ -1,7 +1,11 @@
 import { Repository } from 'typeorm';
 import { MockType } from '../types';
 import { QuestionnaireService } from '../../src/questionnaire/questionnaire.service';
-import { Question, Questionnaire, QuestionValidation } from '../../src/questionnaire/entity';
+import {
+  Question,
+  Questionnaire,
+  QuestionValidation,
+} from '../../src/questionnaire/entity';
 
 export const questionnaireServiceMockFactory: () => MockType<QuestionnaireService> =
   jest.fn(() => ({

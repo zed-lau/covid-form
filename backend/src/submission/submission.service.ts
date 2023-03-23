@@ -13,11 +13,12 @@ export class SubmissionService {
     @InjectRepository(Submission)
     private submissionRepo: Repository<Submission>,
   ) {}
-  async getSubmissionResponses() {
+  async getSubmissionResponses(questionnaireId: number) {
     const submissions = await this.submissionRepo
       .createQueryBuilder('submission')
       .leftJoin('submission.responses', 'response')
       .select(['submission.id', 'response.questionId', 'response.value'])
+      .where('submission.questionnaireId=:id', { id: questionnaireId })
       .getMany();
 
     const submissionResponses = submissions.reduce<
@@ -30,7 +31,9 @@ export class SubmissionService {
       sAcc.push({ id: submission.id, ...responses });
       return sAcc;
     }, []);
-    const questions = await this.questionnaireService.getQuestions();
+    const questions = await this.questionnaireService.getQuestions(
+      questionnaireId,
+    );
 
     return {
       questions: questions.map(
@@ -40,10 +43,12 @@ export class SubmissionService {
     };
   }
   async create(submissionDto: ISubmissionDto) {
-    Logger.log('Creating submission...')
+    Logger.log('Creating submission...');
     const responses = submissionDto.responses;
 
-    await dataSource.initialize();
+    if (!dataSource.isInitialized) {
+      await dataSource.initialize();
+    }
     return await dataSource.transaction(async (transactionalEntityManager) => {
       const entity = transactionalEntityManager.create(Submission, {
         questionnaireId: submissionDto.questionnaireId,

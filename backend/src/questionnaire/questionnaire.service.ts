@@ -23,10 +23,11 @@ export class QuestionnaireService {
       .where('questionnaire.id=:id', { id })
       .getOneOrFail();
   }
-  async getQuestions() {
+  async getQuestions(questionnaireId: number) {
     return await this.questionRepo
       .createQueryBuilder('question')
       .orderBy({ 'question.order': 'ASC' })
+      .where('question.questionnaireId=:id', { id: questionnaireId })
       .getMany();
   }
 

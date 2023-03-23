@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   Post,
+  Query,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
@@ -14,8 +15,8 @@ export class SubmissionController {
   constructor(private readonly service: SubmissionService) {}
 
   @Get('responses')
-  getSubmissionResponses() {
-    return this.service.getSubmissionResponses();
+  getSubmissionResponses(@Query('questionnaireId') questionnaireId: number) {
+    return this.service.getSubmissionResponses(questionnaireId);
   }
 
   @Post()

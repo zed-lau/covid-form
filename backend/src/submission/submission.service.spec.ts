@@ -68,6 +68,9 @@ describe('SubmissionService', () => {
       select: jest.fn().mockImplementation(() => {
         return mockCreateQueryBuilder;
       }),
+      where: jest.fn().mockImplementation(() => {
+        return mockCreateQueryBuilder;
+      }),
       getMany: jest.fn().mockImplementation(() => {
         return mockSubmissions;
       }),
@@ -92,7 +95,7 @@ describe('SubmissionService', () => {
       });
 
     // When
-    const submissions = await service.getSubmissionResponses();
+    const submissions = await service.getSubmissionResponses(1);
 
     // Then
     expect(submissions).toEqual({
@@ -113,6 +116,10 @@ describe('SubmissionService', () => {
     expect(mockCreateQueryBuilder.leftJoin).toHaveBeenCalledWith(
       'submission.responses',
       'response',
+    );
+    expect(mockCreateQueryBuilder.where).toHaveBeenCalledWith(
+      'submission.questionnaireId=:id',
+      { id: 1 },
     );
     expect(mockCreateQueryBuilder.select).toHaveBeenCalledWith([
       'submission.id',
